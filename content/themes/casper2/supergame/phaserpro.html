@@ -48,6 +48,10 @@
         var lifeText;
         //Nuevas variable para la estrella verde
         var sgreen;
+        //variable del niveles
+        var nivel = 1;
+        var nivelText;
+        var n;
 
         var game = new Phaser.Game(config);
 
@@ -71,11 +75,6 @@
             //  Here we create the ground.
             //  Scale it to fit the width of the game (the original sprite is 400x32 in size)
             platforms.create(400, 568, 'ground').setScale(2).refreshBody();
-
-            //  Now let's create some ledges
-            platforms.create(600, 400, 'ground');
-            platforms.create(50, 250, 'ground');
-            platforms.create(750, 220, 'ground');
 
             // The player and its settings
             player = this.physics.add.sprite(100, 450, 'dude');
@@ -131,7 +130,9 @@
             //  The score
             scoreText = this.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#000' });
             // cantidad de corazones
-            lifeText = this.add.text(300, 16, 'life: 3', { fontSize: '32px', fill: '#000' });
+            lifeText = this.add.text(490, 16, 'life: 3', { fontSize: '32px', fill: '#000' });
+            //Cantidad de niveles
+           nivelText = this.add.text(300, 16, 'nivel: 1', { fontSize: '32px', fill: '#000' });
             //  Collide the player and the stars with the platforms
             this.physics.add.collider(player, platforms);
             this.physics.add.collider(stars, platforms);
@@ -212,6 +213,17 @@
                 green.setCollideWorldBounds(true);
                 green.setVelocity(Phaser.Math.Between(-200, 200), 20);
 
+                //Niveles
+               nivel++;
+                nivelText.setText('nivel: ' + nivel);
+
+                if (nivel % 3 == 0) {
+                    //Añadir espacios
+                    for (n = 0; n < getRndInteger(1, 5); n++) {
+                        platforms.create(getRndInteger(50, 600), (400 - n * 100), 'ground').setScale(0.5).refreshBody();
+                    }
+                }
+
             }
         }
 
@@ -261,6 +273,10 @@
             score = score + 50;
             scoreText.setText('score: ' + score);
 
+        }
+        //Funcion randomica
+        function getRndInteger(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
         }
 
     </script>

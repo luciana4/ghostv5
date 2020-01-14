@@ -22,11 +22,24 @@
             {{#if @site.twitter}}
                 <a class="social-link social-link-tw" href="{{twitter_url @site.twitter}}" title="Twitter" target="_blank" rel="noopener">{{> "icons/twitter"}}</a>
             {{/if}}
+
+                                     <li>
+<a href="https://maferevelo.tk/" title="Spanish">
+                <img src="https://i.ibb.co/m9GprQx/flag-for-spain-1f1ea-1f1f8.png">
+            </a>
+            <a href="https://maferevelo.tk/en" title="English">
+                <img src="https://i.ibb.co/nmLw3hg/flag-for-united-states-1f1fa-1f1f8.png">
+            </a>
+
+</li>
+
         </div>
         {{#if @labs.members}}
             <a class="subscribe-button" href="#subscribe">Subscribe</a>
         {{else}}
             <a class="rss-button" href="https://feedly.com/i/subscription/feed/{{@site.url}}/rss/" title="RSS" target="_blank" rel="noopener">{{> "icons/rss"}}</a>
         {{/if}}
+
+
     </div>
 </nav>
